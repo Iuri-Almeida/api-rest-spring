@@ -12,21 +12,16 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/bookstore")
+@RequestMapping(value = {"/","/bookstore"})
 public class BookController {
 
     private final BookService bookService;
 
-    @GetMapping("")
+    @GetMapping({"", "/"})
     private ResponseEntity<List<BookDTO>> getBooks() {
         List<BookDTO> response = bookService.getBookDTOList();
 
         return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/")
-    private ResponseEntity<List<BookDTO>> getBooks2() {
-        return getBooks();
     }
 
     @GetMapping("/{id}")
